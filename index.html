@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Chinese Chengyu Challenge: Test your Chinese knowledge!</title>
+	<title>One Among The Fence: The Coheed Quiz</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
 </head>
 <body>
 	<div id="top-content">
@@ -16,8 +20,8 @@
 
 			<!-- starting game content -->
 			<div class="starter-display question-content" id="top-starter">
-				<ul class="display-container" id="top-display">
-					<li class="starter-display" id="title">Chinese Chengyu Challenge</li>
+				<ul class="display-container top-display" id="starter-content">
+					<li class="starter-display" id="title">One Among the Fence: The Coheed Quiz</li>
 					<li class="question-content" id="question-1">Question 1</li>
 					<li class="question-content" id="question-2">Question 2</li>
 					<li class="question-content" id="question-3">Question 3</li>
@@ -27,13 +31,32 @@
 			</div>
 
 			<!-- end of game results -->
-			<div class="final-display" id="top-final"></div>
+			<div class="final-display" id="top-final">
+				<ul class="display-container" id="final-content">
+					<li class="final-display" id="final-message"><span id="game-over">Quiz Complete!</span></li>
+					<li class="final-display" id="final-score"><span id="score"></span></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 
-	<div id="main-content"></div>
+	<!-- User input goes here. -->
+	<div id="main-content">
+		<input type="text" id="answer" required/>
+	</div>
 
-	<div id="bottom-content"></div>
+	<!-- Question progress tracker here (5 questions = 5 bubbles) -->
+	<div id="bottom-content">
+		<div id="question-counter">
+			<ul class="display-container" id="progress-tracker">
+				<li class="question-bubble unanswered">?</li>
+				<li class="question-bubble unanswered">?</li>
+				<li class="question-bubble unanswered">?</li>
+				<li class="question-bubble unanswered">?</li>
+				<li class="question-bubble unanswered">?</li>
+			</ul>
+		</div>
+	</div>
 
 </body>
 </html>

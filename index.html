@@ -9,19 +9,43 @@
 	<script type="text/javascript" src="js/app.js"></script>
 </head>
 <body>
-	<div id="top-content">
 
-		<!--top anchor elements: instructions and new game -->
-		<a href="#" class="top-nav" id="what">Instructions</a>
-		<a href="#" class="top-nav" id="new-game">New Game</a>
+	<header>
+
+		<nav>
+			<!--top anchor elements: explanation and new game -->
+			<ul class="clearfix">
+				<li><a href="#" class="top-nav clearfix" id="what">What is this?</a></li>
+				<li><a href="#" class="top-nav clearfix" id="new-game">New Game</a></li>
+			</ul>
+		</nav>
+
+		<div class="overlay">
+			<div class="overlay-content">
+				<p>The Coheed Quiz is simple: test your level of fandom by correctly identifying song lyrics on an escalating level of difficulty and obscurity.</p>
+
+				<p>At the end of the quiz you'll receive a score based on your performance rating your CoCa knowledge.</p>
+
+				<p>Good luck and remember: <span style="font-style: italic">true Coheed fans don't use Google</span>!</p>
+
+				<a href="#" id="close-overlay">Click here to close this window.</a>
+			</div>
+		</div>
+
+		<div class="starter-display top-display" id="logo-title">
+			<h1 id="title">One Among the Fence: The Coheed Quiz</h1>
+		</div>
+	</header>
+
+	<div id="top-content">
 		
 		<!--main top content box wraps display content (game/final) -->
 		<div class="game-content" id="top-box">
 
+
 			<!-- starting game content -->
 			<div class="starter-display question-content" id="top-starter">
 				<ul class="display-container top-display" id="starter-content">
-					<li class="starter-display" id="title">One Among the Fence: The Coheed Quiz</li>
 					<li class="question-content" id="question-1">Question 1</li>
 					<li class="question-content" id="question-2">Question 2</li>
 					<li class="question-content" id="question-3">Question 3</li>
@@ -33,7 +57,7 @@
 			<!-- end of game results -->
 			<div class="final-display" id="top-final">
 				<ul class="display-container" id="final-content">
-					<li class="final-display" id="final-message"><span id="game-over">Quiz Complete!</span></li>
+					<li class="final-display" id="final-message"><span id="game-over"><h2>Quiz Complete!</h2></span></li>
 					<li class="final-display" id="final-score"><span id="score"></span></li>
 				</ul>
 			</div>
@@ -42,7 +66,10 @@
 
 	<!-- User input goes here. -->
 	<div id="main-content">
-		<input type="text" id="answer" required/>
+		<form>
+			<input type="text" id="answer-input" required/>
+			<input type="submit" id="start-game" class="button" name="start" value="Grab your own Jackhammer!"/>
+		</form>
 	</div>
 
 	<!-- Question progress tracker here (5 questions = 5 bubbles) -->
@@ -52,8 +79,8 @@
 				<li class="question-bubble unanswered">?</li>
 				<li class="question-bubble unanswered">?</li>
 				<li class="question-bubble unanswered">?</li>
-				<li class="question-bubble unanswered">?</li>
-				<li class="question-bubble unanswered">?</li>
+				<li class="question-bubble incorrect">?</li>
+				<li class="question-bubble correct">?</li>
 			</ul>
 		</div>
 	</div>

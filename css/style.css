@@ -1,0 +1,90 @@
+/* Initial setup */
+
+html, body {
+    height: 100%;
+}
+
+body {
+	background: #FFF8FE;
+	position: relative;
+	height: 100%;
+	width: 960px;
+	font-family: Arial, sans-serif;
+	text-align: center;
+	border: 1px solid red;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+}
+
+ul li {	
+	display: inline;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/* Header */
+
+nav {
+	width: 80%;
+	margin: 0px auto;
+	padding: 0px 25px 0px 0px;
+}
+
+nav ul li:first-child {
+	float: left;
+}
+
+nav ul li:last-child {
+	float: right;
+}
+
+.overlay-content {
+	margin: 0px auto;
+	width: 600px;
+	border: 1px solid black;
+	text-align: left;
+	padding: 15px 10px 15px 25px;
+}
+
+/* Main body content */
+
+
+/* Bottom content */
+#bottom-content {
+	margin-top: 100px;
+}
+
+.question-bubble, .unanswered, .correct, .incorrect {
+
+	padding: 55px;
+	margin: 0 15px 0 15px;
+	border-radius: 90px;
+}
+
+.unanswered {
+	background: #E5DFE4;
+	border: 3px dashed #403E3F;
+}
+
+.correct {
+	background: #3FFF46;
+	border: 3px dashed #104012;
+}
+
+.incorrect {
+	background: #FF0300;
+	border: 3px dashed #400100;
+}
+

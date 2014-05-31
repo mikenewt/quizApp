@@ -1,5 +1,4 @@
 /* Initial setup */
-
 html, body {
     height: 100%;
 }
@@ -8,10 +7,11 @@ body {
 	background: #FFF8FE;
 	position: relative;
 	height: 100%;
-	width: 960px;
+	width: 100%;
 	font-family: Arial, sans-serif;
 	text-align: center;
 	border: 1px solid red;
+	padding-right: 50px;
 }
 
 a {
@@ -34,7 +34,21 @@ ul li {
     clear: both;
 }
 
-/* Header */
+#top-content, #main-content, #body-content {
+	/*border: 1px solid black;*/
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+*:focus {
+	outline: none;
+}
+
+/* Header + top content */
+
+.game-content {
+	display: none;
+}
 
 nav {
 	width: 80%;
@@ -51,6 +65,7 @@ nav ul li:last-child {
 }
 
 .overlay-content {
+	display: none;
 	margin: 0px auto;
 	width: 600px;
 	border: 1px solid black;
@@ -58,11 +73,52 @@ nav ul li:last-child {
 	padding: 15px 10px 15px 25px;
 }
 
+#title {
+	margin: 50px 0px;
+	font-size: 2.5em;
+}
+
+#top-content h2 {
+	display: none;
+	font-size: 2em;
+}
+
+#top-content li {
+	font-size: 1.25em;
+}
+
 /* Main body content */
+
+#main-content {
+	padding: 25px 0px;
+	width: 100%;
+}
+
+#answer-input, #start-game {
+	line-height: 24px;
+	font-size: 1.5em;
+	font-style: italic;
+}
+
+#answer-input {
+	display: none;
+	width: 500px;
+	background: none;
+	border: none;
+	border-bottom: 1px solid #BFBABE;
+	color: gray;
+	text-align: center;
+
+}
+
+#start-game {
+	padding: 24px;
+}
 
 
 /* Bottom content */
 #bottom-content {
+	display: none;
 	margin-top: 100px;
 }
 
@@ -71,6 +127,11 @@ nav ul li:last-child {
 	padding: 55px;
 	margin: 0 15px 0 15px;
 	border-radius: 90px;
+}
+
+.question-bubble {
+	font-size: 2em;
+	font-weight: bold;
 }
 
 .unanswered {

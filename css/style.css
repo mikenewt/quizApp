@@ -91,7 +91,9 @@ nav ul li:last-child {
 
 #main-content {
 	padding: 25px 0px;
-	width: 100%;
+	width: 450px;
+	margin: 0 auto;
+	text-align: center;
 }
 
 #answer-input, #start-game {

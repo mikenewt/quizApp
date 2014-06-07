@@ -69,20 +69,19 @@ function startGame() {
 
 function getQuestion() {
 
-	var questionContainer = $('#starter-content')
+	var questionContainer = $('#starter-content');
 
-	// get a question from the questionDict where the key = questionCount and store in question variable
 	question = questionLibrary[qNum]['lyrics'];
 	console.log(question);
 
 	// dump question text into li .question-content
-	questionContainer.append("<li class='question-content'>" + question + "</li>");
+	questionContainer.append("<li class='question-content visible'>" + question + "</li>");
 	qNum = qNum++;
 	
 }
 
 function answerQuestion() {
-	
+
 	userAnswer = $('#answer-input').val();
 	userAnswer = userAnswer.toLowerCase();
 	userAnswer = userAnswer.replace(/\s/g,'');
@@ -91,14 +90,40 @@ function answerQuestion() {
 	var answer = questionLibrary[qNum]['answer']
 	console.log(answer);
 
-	if(userAnswer === answer) {
-		$('#progress-tracker li:nth-child(1)').removeClass('unanswered').addClass('correct');
-	} else {
-		$('#progress-tracker li:nth-child(1)').removeClass('unanswered').addClass('incorrect');
-	} 
-
+	if (validateInput(userAnswer)) {
+		if(userAnswer === answer) {
+			$('#progress-tracker li:nth-child(1)').removeClass('unanswered').addClass('correct');
+			$('#answer-input').val('');
+			nextQuestion();
+			console.log('nextQuestion() called!');
+		} else {
+			$('#progress-tracker li:nth-child(1)').removeClass('unanswered').addClass('incorrect');
+			$('#answer-input').val('');
+		}
+	}
 }
 
 function validateInput() {
+	if (userAnswer === undefined || userAnswer === null || userAnswer === "") {
+		alert('Invalid input.');
+		return false;
+	} else {
+		return true;
+	}
+}
+
+// different from getQuestion: increments qNum first + dumps previous li and replaces with new question
+function nextQuestion() {
+
+	var questionContainer = $('#starter-content');
+	var previousQuestion = $('.question-content');
 	
+	qNum = qNum++;
+	console.log(qNum);
+	
+	question = questionLibrary[qNum]['lyrics'];
+
+	previousQuestion.text(question);
+	// questionContainer.append("<li class='question-content'>" + question + "</li>");
+
 }

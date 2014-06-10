@@ -15,7 +15,7 @@ var questionLibrary = [{'questionNumber': 1,
 						 'lyrics': 'I gave my everything for all the wrong things',
 						 'answer': 'darksideofme'}];
 
-$(document).ready(function () {
+$(document).ready(function() {
 
 	$('a').click(function(event) {
 		console.log("Handler for anchor text preventDefault() called!");
@@ -76,7 +76,9 @@ function getQuestion() {
 
 	// dump question text into li .question-content
 	questionContainer.append("<li class='question-content visible'>" + question + "</li>");
-	qNum = qNum++;
+	// qNum = qNum + 1;
+
+	console.log('qNum at getQuestion runtime: ' + qNum)
 	
 }
 
@@ -95,17 +97,19 @@ function answerQuestion() {
 			$('#progress-tracker li:nth-child(1)').removeClass('unanswered').addClass('correct');
 			$('#answer-input').val('');
 			nextQuestion();
-			console.log('nextQuestion() called!');
 		} else {
 			$('#progress-tracker li:nth-child(1)').removeClass('unanswered').addClass('incorrect');
 			$('#answer-input').val('');
+			nextQuestion();
 		}
+	} else {
+		userAnswer = '';
 	}
 }
 
 function validateInput() {
 	if (userAnswer === undefined || userAnswer === null || userAnswer === "") {
-		alert('Invalid input.');
+		alert('Invalid input. Please try again.');
 		return false;
 	} else {
 		return true;
@@ -115,15 +119,14 @@ function validateInput() {
 // different from getQuestion: increments qNum first + dumps previous li and replaces with new question
 function nextQuestion() {
 
-	var questionContainer = $('#starter-content');
-	var previousQuestion = $('.question-content');
-	
-	qNum = qNum++;
-	console.log(qNum);
-	
-	question = questionLibrary[qNum]['lyrics'];
+	console.log('nextQuestion() called!')
 
-	previousQuestion.text(question);
-	// questionContainer.append("<li class='question-content'>" + question + "</li>");
+	var previousQuestion = $('.question-content');
+	previousQuestion.removeClass('visible').addClass('hidden');
+	
+	qNum = qNum + 1;
+	console.log(qNum);
+
+	getQuestion();
 
 }

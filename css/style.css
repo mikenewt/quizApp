@@ -156,5 +156,5 @@ nav ul li:last-child {
 }
 
 .hidden {
-	display: hidden;
+	display: none;
 }

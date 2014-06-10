@@ -151,3 +151,10 @@ nav ul li:last-child {
 	border: 3px dashed #400100;
 }
 
+.visible {
+	display: block;
+}
+
+.hidden {
+	display: none;
+}

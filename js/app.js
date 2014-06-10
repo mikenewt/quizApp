@@ -15,7 +15,7 @@ var questionLibrary = [{'questionNumber': 1,
 						 'lyrics': 'I gave my everything for all the wrong things',
 						 'answer': 'darksideofme'}];
 
-$(document).ready(function () {
+$(document).ready(function() {
 
 	$('a').click(function(event) {
 		console.log("Handler for anchor text preventDefault() called!");
@@ -69,20 +69,21 @@ function startGame() {
 
 function getQuestion() {
 
-	var questionContainer = $('#starter-content')
+	var questionContainer = $('#starter-content');
 
-	// get a question from the questionDict where the key = questionCount and store in question variable
 	question = questionLibrary[qNum]['lyrics'];
 	console.log(question);
 
 	// dump question text into li .question-content
-	questionContainer.append("<li class='question-content'>" + question + "</li>");
-	qNum = qNum++;
+	questionContainer.append("<li class='question-content visible'>" + question + "</li>");
+	// qNum = qNum + 1;
+
+	console.log('qNum at getQuestion runtime: ' + qNum)
 	
 }
 
 function answerQuestion() {
-	
+
 	userAnswer = $('#answer-input').val();
 	userAnswer = userAnswer.toLowerCase();
 	userAnswer = userAnswer.replace(/\s/g,'');
@@ -91,14 +92,41 @@ function answerQuestion() {
 	var answer = questionLibrary[qNum]['answer']
 	console.log(answer);
 
-	if(userAnswer === answer) {
-		$('#progress-tracker li:nth-child(1)').removeClass('unanswered').addClass('correct');
+	if (validateInput(userAnswer)) {
+		if(userAnswer === answer) {
+			$('#progress-tracker li:nth-child(1)').removeClass('unanswered').addClass('correct');
+			$('#answer-input').val('');
+			nextQuestion();
+		} else {
+			$('#progress-tracker li:nth-child(1)').removeClass('unanswered').addClass('incorrect');
+			$('#answer-input').val('');
+			nextQuestion();
+		}
 	} else {
-		$('#progress-tracker li:nth-child(1)').removeClass('unanswered').addClass('incorrect');
-	} 
-
+		userAnswer = '';
+	}
 }
 
 function validateInput() {
+	if (userAnswer === undefined || userAnswer === null || userAnswer === "") {
+		alert('Invalid input. Please try again.');
+		return false;
+	} else {
+		return true;
+	}
+}
+
+// different from getQuestion: increments qNum first + dumps previous li and replaces with new question
+function nextQuestion() {
+
+	console.log('nextQuestion() called!')
+
+	var previousQuestion = $('.question-content');
+	previousQuestion.removeClass('visible').addClass('hidden');
 	
+	qNum = qNum + 1;
+	console.log(qNum);
+
+	getQuestion();
+
 }

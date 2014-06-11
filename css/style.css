@@ -10,7 +10,6 @@ body {
 	width: 100%;
 	font-family: Arial, sans-serif;
 	text-align: center;
-	border: 1px solid red;
 	padding-right: 50px;
 }
 
@@ -44,7 +43,9 @@ ul li {
 	outline: none;
 }
 
-/* Header + top content */
+/*********************
+Header + top content 
+**********************/
 
 .game-content {
 	display: none;
@@ -86,11 +87,9 @@ nav ul li:last-child {
 	font-size: 1.25em;
 }
 
-
-
-
-
-/* Main body content */
+/******************** 
+  Main body content 
+*********************/
 
 #main-content {
 	padding: 25px 0px;
@@ -106,7 +105,6 @@ nav ul li:last-child {
 }
 
 #answer-input {
-	display: none;
 	width: 500px;
 	background: none;
 	border: none;
@@ -120,8 +118,10 @@ nav ul li:last-child {
 	padding: 24px;
 }
 
+/**************** 
+Bottom content 
+*****************/
 
-/* Bottom content */
 #bottom-content {
 	display: none;
 	margin-top: 100px;

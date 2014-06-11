@@ -47,10 +47,6 @@ ul li {
 Header + top content 
 **********************/
 
-.game-content {
-	display: none;
-}
-
 nav {
 	width: 80%;
 	margin: 0px auto;

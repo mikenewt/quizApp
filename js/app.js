@@ -1,4 +1,4 @@
-var userAnswer, question, qNum = 0;
+var userAnswer, question, qNum = 0, points = 0, totalQuestions = 5; 
 var questionLibrary = [{'questionNumber': 1,
 						'lyrics': 'Good eye sniper! I shoot, you run',
 						'answer': 'afavorhouseatlantic'},
@@ -16,6 +16,8 @@ var questionLibrary = [{'questionNumber': 1,
 						 'answer': 'darksideofme'}];
 
 $(document).ready(function() {
+
+	initializeBubbles();
 
 	$('a').click(function(event) {
 		console.log("Handler for anchor text preventDefault() called!");
@@ -47,7 +49,18 @@ $(document).ready(function() {
 
 
 
-})
+});
+
+function initializeBubbles() {
+
+	var questionId, answerBubble;
+
+	for (i = 1; i <= totalQuestions; i++) {
+		questionId = "question-" + i;
+		answerBubble = '<li class="question-bubble unanswered" id=' + questionId + '>?</li>';
+		$('#progress-tracker').append(answerBubble);
+	}
+}
 
 function startGame() {
 
@@ -76,7 +89,6 @@ function getQuestion() {
 
 	// dump question text into li .question-content
 	questionContainer.append("<li class='question-content visible'>" + question + "</li>");
-	// qNum = qNum + 1;
 
 	console.log('qNum at getQuestion runtime: ' + qNum)
 	
@@ -94,13 +106,14 @@ function answerQuestion() {
 
 	if (validateInput(userAnswer)) {
 		if(userAnswer === answer) {
-			$('#progress-tracker li:nth-child(1)').removeClass('unanswered').addClass('correct');
-			$('#answer-input').val('');
+			points = points + 1;
 			nextQuestion();
+			changeBubble('correct');
 		} else {
-			$('#progress-tracker li:nth-child(1)').removeClass('unanswered').addClass('incorrect');
-			$('#answer-input').val('');
+			// $('#progress-tracker li:nth-child(1)').removeClass('unanswered').addClass('incorrect');
+			// $('#answer-input').val('');
 			nextQuestion();
+			changeBubble('incorrect')
 		}
 	} else {
 		userAnswer = '';
@@ -116,17 +129,38 @@ function validateInput() {
 	}
 }
 
+function changeBubble(style) {
+	
+	$('#question-' + qNum).removeClass('unanswered').addClass(style);
+	$('#answer-input').val('');
+	$('#answer-input').focus();
+
+}
+
 // different from getQuestion: increments qNum first + dumps previous li and replaces with new question
 function nextQuestion() {
 
 	console.log('nextQuestion() called!')
 
-	var previousQuestion = $('.question-content');
-	previousQuestion.removeClass('visible').addClass('hidden');
-	
 	qNum = qNum + 1;
 	console.log(qNum);
 
+	if (qNum > totalQuestions) {
+		finalize();
+		return
+	}
+
+	var previousQuestion = $('.question-content');
+	previousQuestion.removeClass('visible').addClass('hidden');
+	
+
 	getQuestion();
 
+}
+
+function finalize() {
+	$('#top-starter').addClass('hidden');
+	$('#answer-input').addClass('hidden');
+
+	$('#score').text('You scored: ' + points + 'out of ' + totalQuestions)	
 }

@@ -22,7 +22,7 @@
 
 		<div class="overlay">
 			<div class="overlay-content">
-				<p>The Coheed Quiz is simple: test your level of fandom by correctly identifying song lyrics on an escalating level of difficulty and obscurity.</p>
+				<p>The Coheed Quiz is simple: test your level of fandom by correctly identifying song lyrics and entering in the name of the song to which they belong.</p>
 
 				<p>At the end of the quiz you'll receive a score based on your performance rating your CoCa knowledge.</p>
 
@@ -50,8 +50,8 @@
 			</div>
 
 			<!-- end of game results -->
-			<div class="final-display" id="top-final">
-				<ul class="display-container" id="final-content">
+			<div class="final-display hidden" id="top-final">
+				<ul class="display-container final-display" id="final-content">
 					<li class="final-display" id="final-message"><span id="game-over"><h2>Quiz Complete!</h2></span></li>
 					<li class="final-display" id="final-score"><span id="score"></span></li>
 				</ul>
@@ -72,11 +72,7 @@
 	<div id="bottom-content">
 		<div id="question-counter">
 			<ul class="display-container" id="progress-tracker">
-				<li class="question-bubble unanswered">?</li>
-				<li class="question-bubble unanswered">?</li>
-				<li class="question-bubble unanswered">?</li>
-				<li class="question-bubble unanswered">?</li>
-				<li class="question-bubble unanswered">?</li>
+				<!--question bubbles are appended to ul via initialize() method in app.js -->
 			</ul>
 		</div>
 	</div>

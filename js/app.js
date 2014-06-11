@@ -1,4 +1,5 @@
-var userAnswer, question, qNum = 0, points = 0, totalQuestions = 5; 
+var userAnswer, question, qNum = 0, points = 0; totalQuestions = 4;
+
 var questionLibrary = [{'questionNumber': 1,
 						'lyrics': 'Good eye sniper! I shoot, you run',
 						'answer': 'afavorhouseatlantic'},
@@ -39,6 +40,8 @@ $(document).ready(function() {
 		$('.overlay-content').slideUp();
 	});
 
+	$('#new-game').click(newGame);
+
 	$('#answer-input').keydown(function(event) {
 		if (event.which == 13) {
 			event.preventDefault();
@@ -55,10 +58,25 @@ function initializeBubbles() {
 
 	var questionId, answerBubble;
 
-	for (i = 1; i <= totalQuestions; i++) {
+	for (i = 0; i <= totalQuestions; i++) {
 		questionId = "question-" + i;
 		answerBubble = '<li class="question-bubble unanswered" id=' + questionId + '>?</li>';
 		$('#progress-tracker').append(answerBubble);
+	}
+}
+
+function newGame() {
+	
+	qNum = 0;
+	startGame();
+	resetBubbles();
+
+	if ($('#top-final').hasClass('visible')) {
+		hide($('#top-final'))
+	}
+
+	if ($('#top-starter').hasClass('hidden')) {
+		show($('#top-starter'))
 	}
 }
 
@@ -73,7 +91,8 @@ function startGame() {
 
 	startButton.css('display', 'none');
 	gameContent.css('display', 'inline-block');
-	input.css('display', 'inline-block');
+	show(input)
+	input.text('');
 	input.focus();
 	questionBubbles.css('display', 'inline-block');
 
@@ -107,13 +126,13 @@ function answerQuestion() {
 	if (validateInput(userAnswer)) {
 		if(userAnswer === answer) {
 			points = points + 1;
-			nextQuestion();
 			changeBubble('correct');
+			nextQuestion();
 		} else {
 			// $('#progress-tracker li:nth-child(1)').removeClass('unanswered').addClass('incorrect');
 			// $('#answer-input').val('');
+			changeBubble('incorrect');
 			nextQuestion();
-			changeBubble('incorrect')
 		}
 	} else {
 		userAnswer = '';
@@ -150,8 +169,7 @@ function nextQuestion() {
 		return
 	}
 
-	var previousQuestion = $('.question-content');
-	previousQuestion.removeClass('visible').addClass('hidden');
+	hide($('.question-content'));
 	
 
 	getQuestion();
@@ -159,8 +177,37 @@ function nextQuestion() {
 }
 
 function finalize() {
-	$('#top-starter').addClass('hidden');
-	$('#answer-input').addClass('hidden');
 
-	$('#score').text('You scored: ' + points + 'out of ' + totalQuestions)	
+	// a work-around for two different 0-based (questionLibrary) and 1-based indices (number of questions)
+	totalQuestions = totalQuestions + 1
+	
+	console.log('finalize() called!');
+	console.log('totalQuestions = ' + totalQuestions);
+
+	// empty question li's and hide question/input content
+	$('#starter-content li').text('');
+	hide($('#top-starter'));
+	hide($('#answer-input'));
+
+	// show final score
+	show($('#top-final'))
+	$('#score').text('You scored: ' + points + ' out of ' + totalQuestions)	
+}
+
+function resetBubbles() {
+
+	var bubbles = $('#progress-tracker li').length;
+	for (i = 0; i < bubbles; i++) {
+    	if ($('.question-bubble').hasClass('correct') || $('.question-bubble').hasClass('incorrect')) {
+        	$('.question-bubble').removeClass('correct incorrect').addClass('unanswered');
+    	}
+	}
+}
+
+function show(element) {
+	element.removeClass('hidden').addClass('visible');
+}
+
+function hide(element) {
+	element.removeClass('visible').addClass('hidden');
 }

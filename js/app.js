@@ -84,17 +84,14 @@ function startGame() {
 
 	console.log("Running startGame()!");
 	
-	var gameContent = $('.game-content');
-	var input = $('#answer-input');
-	var questionBubbles = $('#bottom-content');
-	var startButton = $('#start-game')
+	show($('.game-content'));
+	show($('#bottom-content'));
+	hide($('#start-game'));
 
-	startButton.css('display', 'none');
-	gameContent.css('display', 'inline-block');
+	var input = $('#answer-input');
 	show(input)
 	input.text('');
 	input.focus();
-	questionBubbles.css('display', 'inline-block');
 
 	getQuestion();
 }
